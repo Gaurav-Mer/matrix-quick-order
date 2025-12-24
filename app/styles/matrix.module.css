@@ -1,0 +1,557 @@
+/* ===============================
+   AIRBNB STYLE MATRIX
+================================ */
+
+/* 1. WRAPPER */
+/* 1. WRAPPER (The Scroll Container) */
+.matrixWrapper {
+    margin-top: 20px;
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06), 0 12px 24px rgba(0, 0, 0, 0.06);
+
+    /* --- KEY FOR SCROLLING --- */
+    overflow-x: auto;
+    /* Allows horizontal scroll */
+    position: relative;
+    max-width: 100%;
+    /* Ensures it fits within the screen */
+    -webkit-overflow-scrolling: touch;
+    /* Smooth scrolling for iPhone/iPad */
+}
+
+/* 2. TABLE BASE */
+.matrixTable {
+    width: 100%;
+    /* Sticky positioning requires 'separate', 'collapse' often breaks it */
+    border-collapse: separate;
+    border-spacing: 0;
+
+    /* Min-width ensures the table is wide enough to REQUIRE scrolling on mobile */
+    min-width: 800px;
+}
+
+/* 3. STICKY FIRST COLUMN (The logic you asked for) */
+.matrixTable th:first-child,
+.matrixTable td:first-child {
+    /* Sticks the column to the left */
+    position: sticky;
+    left: 0;
+
+    /* Z-index 10 ensures it stays ABOVE the scrolling data cells */
+    z-index: 10;
+
+    /* Background is CRITICAL. If transparent, text will scroll behind it and look messy */
+    background: #ffffff;
+
+    /* Adds the shadow line to separate fixed col from scrolling content */
+    box-shadow: 2px 0 6px rgba(0, 0, 0, 0.04);
+
+    /* Fix for border glitch on sticky elements */
+    background-clip: padding-box;
+}
+
+/* 4. TOP LEFT CORNER (The intersection) */
+.matrixTable th:first-child {
+    /* Higher Z-index than the rest of the column so top headers slide UNDER it */
+    z-index: 20;
+    background: #fafafa;
+    /* Matches header background */
+}
+
+/* 5. HEADERS */
+.headerRow th {
+    position: sticky;
+    /* Optional: Makes top header sticky vertically too */
+    top: 0;
+    z-index: 15;
+    /* Sits below the top-left corner (20) but above data (1) */
+
+    background: #fafafa;
+    color: #717171;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    font-size: 11px;
+    padding: 14px 18px;
+    text-align: center;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.headerCorner {
+    text-align: left !important;
+    color: #222222;
+}
+
+/* 6. BODY ROWS */
+.bodyRow td {
+    padding: 14px 18px;
+    text-align: center;
+    background: #ffffff;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+/* Row hover effect */
+.bodyRow:hover td {
+    background: #fafafa;
+}
+
+/* IMPORTANT: Ensure sticky column changes color on hover too */
+.bodyRow:hover td:first-child {
+    background: #fafafa;
+}
+
+/* 7. INPUTS */
+.qtyInput {
+    width: 100%;
+    min-width: 45px;
+    /* Prevent squishing on mobile */
+    max-width: 64px;
+    height: 40px;
+    padding: 0 6px;
+    text-align: center;
+    border-radius: 12px;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    background: #ffffff;
+    color: #222222;
+    font-size: 15px;
+    transition: border-color 0.2s ease, box-shadow 0.25s ease;
+}
+
+.qtyInput:focus {
+    outline: none;
+    border-color: #222;
+    box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
+}
+
+
+
+.qtyInput:focus {
+    outline: none;
+    border-color: #222222;
+
+    transform: translateY(-1px);
+
+    box-shadow:
+        0 4px 10px rgba(0, 0, 0, 0.12),
+        0 0 0 4px rgba(0, 0, 0, 0.06);
+}
+
+/* 7. EMPTY STATE */
+.emptyCell {
+    font-size: 20px;
+    color: #b0b0b0;
+}
+
+/* 8. FOOTER */
+.actionFooter {
+    position: sticky;
+    bottom: 0;
+    left: 0;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 18px 20px;
+
+    background: #fafafa;
+
+    border-top: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.totalLabel {
+    font-size: 14px;
+    color: #717171;
+    font-weight: 500;
+}
+
+.totalNumber {
+    font-size: 18px;
+    font-weight: 700;
+    color: #222222;
+    margin-left: 8px;
+}
+
+/* 9. CELL WRAPPER */
+.cellWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+}
+
+/* PRICE TAG */
+.priceTag {
+    font-size: 11px;
+    font-weight: 600;
+    color: #717171;
+    white-space: nowrap;
+}
+
+/* 10. COLOR SWATCH */
+.colorSwatch {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    margin-right: 10px;
+    box-shadow:
+        inset 0 0 0 1px rgba(255, 255, 255, 0.9),
+        0 1px 4px rgba(0, 0, 0, 0.18);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+th:hover .colorSwatch {
+    transform: scale(1.15);
+    box-shadow:
+        inset 0 0 0 1px rgba(255, 255, 255, 1),
+        0 4px 10px rgba(0, 0, 0, 0.25);
+}
+
+/* HEADER FLEX */
+.headerContent {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+}
+
+/* ===============================
+   AIRBNB CUSTOMER CARD
+================================ */
+
+.airCustomerCard {
+    padding: 18px;
+    border-radius: 20px;
+
+    background: linear-gradient(180deg,
+            #ffffff 0%,
+            #fafafa 100%);
+
+    border: 1px solid #e7dddd;
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.airCustomerCard:hover {
+    transform: translateY(-2px);
+
+}
+
+/* HEADER */
+.airHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* AVATAR */
+.airAvatar {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+
+    background: linear-gradient(135deg, #ff385c, #ff5a5f);
+
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 14px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* INFO */
+.airInfo {
+    margin-top: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+/* CHANGE BUTTON */
+.airChangeBtn {
+    font-size: 13px;
+    color: #222222;
+    text-decoration: underline;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.airChangeBtn:hover {
+    opacity: 1;
+}
+
+/* ADD CUSTOMER BUTTON */
+.airAddBtn {
+    border-radius: 20px;
+    padding: 8px 12px;
+    cursor: pointer;
+    font-weight: 500;
+    background: #ffffff;
+
+    border: 1px dashed rgba(0, 0, 0, 0.2);
+}
+
+
+/* ... existing styles ... */
+
+/* --- CUSTOM MODAL STYLES --- */
+.modalBackdrop {
+    position: fixed;
+    inset: 0;
+    /* Full screen */
+    background: rgba(126, 126, 126, 0.6);
+    /* Darker overlay */
+    backdrop-filter: blur(4px);
+    /* Blur effect (Optional) */
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease-in-out;
+}
+
+.modalBackdrop.open {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modalPanel {
+    background: white;
+    width: 500px;
+    max-width: 90%;
+    max-height: 85vh;
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25);
+    display: flex;
+    flex-direction: column;
+    transform: scale(0.95);
+    transition: transform 0.2s cubic-bezier(0.25, 1, 0.5, 1);
+    overflow: hidden;
+    /* Keeps header/footer sticky */
+}
+
+.modalBackdrop.open .modalPanel {
+    transform: scale(1);
+}
+
+/* Re-use drawer styles for consistency */
+.modalHeader {
+    padding: 16px 20px;
+    border-bottom: 1px solid #e1e3e5;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #f9fafb;
+}
+
+.modalBody {
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.modalFooter {
+    padding: 16px 20px;
+    border-top: 1px solid #e1e3e5;
+    background: #fff;
+    text-align: right;
+}
+
+
+.airSuccessWrapper {
+    padding: 24px;
+}
+
+.airSuccessCard {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+
+    padding: 20px 22px;
+    border-radius: 20px;
+
+    background: linear-gradient(180deg,
+            #ffffff 0%,
+            #f7fdfb 100%);
+
+    box-shadow:
+        0 4px 12px rgba(0, 0, 0, 0.06),
+        0 20px 40px rgba(0, 0, 0, 0.06);
+
+    animation: airFadeUp 0.35s ease;
+}
+
+/* SUCCESS ICON */
+.airSuccessIcon {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+
+    background: linear-gradient(135deg, #22c55e, #16a34a);
+    color: #ffffff;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-weight: 700;
+    font-size: 18px;
+
+    box-shadow: 0 6px 14px rgba(34, 197, 94, 0.4);
+}
+
+/* CONTENT */
+.airSuccessContent h4 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 600;
+    color: #222222;
+}
+
+.airSuccessContent p {
+    margin: 6px 0 14px;
+    font-size: 14px;
+    color: #717171;
+}
+
+/* BUTTON */
+.airSuccessBtn {
+    border-radius: 20px;
+    padding: 8px 14px;
+    font-weight: 500;
+}
+
+/* ANIMATION */
+@keyframes airFadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(6px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.airSuccessWrapper {
+    padding: 24px;
+}
+
+.airSuccessCard {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+
+    padding: 20px 22px;
+    border-radius: 20px;
+
+    background: linear-gradient(180deg,
+            #ffffff 0%,
+            #f7fdfb 100%);
+
+    box-shadow:
+        0 4px 12px rgba(0, 0, 0, 0.06),
+        0 20px 40px rgba(0, 0, 0, 0.06);
+
+    animation: airFadeUp 0.35s ease;
+}
+
+/* SUCCESS ICON */
+.airSuccessIcon {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+
+    background: linear-gradient(135deg, #22c55e, #16a34a);
+    color: #ffffff;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-weight: 700;
+    font-size: 18px;
+
+    box-shadow: 0 6px 14px rgba(34, 197, 94, 0.4);
+}
+
+/* CONTENT */
+.airSuccessContent h4 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 600;
+    color: #222222;
+}
+
+.airSuccessContent p {
+    margin: 6px 0 14px;
+    font-size: 14px;
+    color: #717171;
+}
+
+/* BUTTON */
+.airSuccessBtn {
+    border-radius: 20px;
+    padding: 8px 14px;
+    font-weight: 500;
+}
+
+/* ANIMATION */
+@keyframes airFadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(6px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+.inp {
+    width: 100%;
+    height: 40px;
+
+    padding: 0 6px;
+    text-align: center;
+
+    border-radius: 12px;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+
+    background: #ffffff;
+    color: #222222;
+    font-size: 15px;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.25s ease,
+        transform 0.15s ease;
+}
+
+.inp:hover {
+    border-color: rgba(0, 0, 0, 0.2);
+}
+
+.inp:focus {
+    outline: none;
+    border-color: #222222;
+
+    transform: translateY(-1px);
+
+    box-shadow:
+        0 4px 10px rgba(0, 0, 0, 0.12),
+        0 0 0 4px rgba(0, 0, 0, 0.06);
+}
