@@ -5,9 +5,8 @@
 /* 1. WRAPPER */
 /* 1. WRAPPER (The Scroll Container) */
 .matrixWrapper {
-    margin-top: 20px;
     background: #ffffff;
-    border-radius: 16px;
+    border-radius: 16px 16px 0px 0px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06), 0 12px 24px rgba(0, 0, 0, 0.06);
 
     /* --- KEY FOR SCROLLING --- */
@@ -26,7 +25,6 @@
     /* Sticky positioning requires 'separate', 'collapse' often breaks it */
     border-collapse: separate;
     border-spacing: 0;
-
     /* Min-width ensures the table is wide enough to REQUIRE scrolling on mobile */
     min-width: 800px;
 }
@@ -145,19 +143,29 @@
 
 /* 8. FOOTER */
 .actionFooter {
+    /* Sticky Logic */
     position: sticky;
     bottom: 0;
     left: 0;
+    z-index: 100;
 
+    /* Layout */
     display: flex;
     justify-content: space-between;
     align-items: center;
 
     padding: 18px 20px;
+    background: white;
 
-    background: #fafafa;
-
+    /* borders */
     border-top: 1px solid rgba(0, 0, 0, 0.06);
+
+    /* Visual Pop (Upward Shadow) */
+    box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.05);
+
+    /* Round the bottom corners to match the Card */
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
 }
 
 .totalLabel {
@@ -554,4 +562,45 @@ th:hover .colorSwatch {
     box-shadow:
         0 4px 10px rgba(0, 0, 0, 0.12),
         0 0 0 4px rgba(0, 0, 0, 0.06);
+}
+
+
+
+
+/* ... existing css ... */
+
+/* --- SINGLE OPTION LIST STYLES --- */
+.listTable {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.listTable th {
+    text-align: left;
+    padding: 14px 20px;
+    background: #fafafa;
+    color: #616161;
+    font-size: 12px;
+    text-transform: uppercase;
+    font-weight: 600;
+    border-bottom: 1px solid #e1e3e5;
+}
+
+.listTable td {
+    padding: 12px 20px;
+    border-bottom: 1px solid #f1f2f3;
+    vertical-align: middle;
+}
+
+.listTable tr:last-child td {
+    border-bottom: none;
+}
+
+.listTable tr:hover td {
+    background-color: #fcfcfc;
+}
+
+.oversellButton {
+    background-color: orange;
+    color: white;
 }
